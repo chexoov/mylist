@@ -1,5 +1,5 @@
 <template>
-
+<router-link to="/foo">Перейти к Foo</router-link>
 <header class="bg-cyan-100 text-black shadow-lg hidden md:block">
   <div class="container mx-auto flex items-center h-24">
     <a href="" class="flex items-center justify-center">
@@ -9,29 +9,29 @@
     <nav class="contents font-semibold text-base lg:text-lg">
       <ul class="mx-auto flex items-center">
         <li class="p-5 xl:p-8 active">
-          <a href="">
+          <router-link to="/home">
             <span>Главная</span>
-          </a>
+          </router-link>
         </li>
         <li class="p-5 xl:p-8">
-          <a href="#">
+          <router-link to="/portfolio">
             <button @click="() => emit('addPortfolio')" >Обо мне</button>
-          </a>
+          </router-link>
         </li>
         <li class="p-5 xl:p-8">
-          <a href="">
+          <router-link to="/project">
             <span>Проекты</span>
-          </a>
+          </router-link>
         </li>
         <li class="p-5 xl:p-8">
-          <a href="">
+          <router-link to="/contacts">
             <span>Контакты</span>
-          </a>
+          </router-link>
         </li>
         <li class="p-5 xl:p-8">
-          <a href="">
+          <router-link to="/blog">
             <span>Блог</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </nav>

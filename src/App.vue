@@ -1,10 +1,10 @@
 <template>
   <Header @add-portfolio="addPortfolio" />
   <div class="flex">
-    <Portfolio v-if="openPortfolio" />
+    <!-- <Portfolio v-if="openPortfolio" /> -->
+    <router-view></router-view>
   </div>
   <Footer />
- 
 </template>
 
 <script setup>
@@ -24,8 +24,7 @@ const addPortfolio = () => {
 };
 
 // тут будут изменения
-// проверка 2 
-
+// проверка 2
 </script>
 
 <style>
