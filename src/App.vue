@@ -23,10 +23,6 @@ const addPortfolio = () => {
   console.log(openPortfolio.value);
 };
 
-// provide("cartActions", {
-//   closePortfolio,
-//   addPortfolio,
-// });
 </script>
 
 <style>
