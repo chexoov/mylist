@@ -23,6 +23,8 @@ const addPortfolio = () => {
   console.log(openPortfolio.value);
 };
 
+// тут будут изменения
+
 </script>
 
 <style>
