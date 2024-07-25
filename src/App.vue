@@ -1,10 +1,12 @@
 <template>
   <Header @add-portfolio="addPortfolio" />
-  <div class="flex">
+  <div class="relative flex flex-col min-h-screen">
     <!-- <Portfolio v-if="openPortfolio" /> -->
     <router-view></router-view>
+    <div class="mt-20">
+      <Footer />
+    </div>
   </div>
-  <Footer />
 </template>
 
 <script setup>
