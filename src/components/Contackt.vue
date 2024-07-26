@@ -4,6 +4,7 @@
       class="flex flex-row  space-y-2 items-center justify-center h-full py-4 bg-gray-800 rounded-xl space-x-10"
     >
       <div class="w-2/3">
+        <p class="text-center text-2xl font-semibold text-white">{{ user.user }}</p>
         <p class="text-center text-2xl font-semibold text-white">We love pixels</p>
         <p class=" text-center pb-8 text-sm tracking-wide leading-tight text-white">
           The card layouts can vary to support the types of content they
@@ -32,3 +33,9 @@
     </div>
 </div>
 </template>
+
+<script setup>
+import {useUserStore} from '../stores/user'
+
+const user = useUserStore()
+</script>

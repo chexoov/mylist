@@ -91,6 +91,9 @@
         </li>
       </ul>
       <p class=" sticky bottom-0 my-5 px-5">Я бы с удовольствием пригласил тебя зайти и выпить, но боюсь, что ты согласишься.</p>
+       Данные с  глобального хранилища: {{ user.user }}
+     <button @click="user.changeUsername">Изменить имя</button>
+
       <!-- component -->
     </div>
   </div>
@@ -98,7 +101,9 @@
 
 <script setup>
 import { ref } from "vue";
+import {useUserStore} from '../stores/user'
 
+const user = useUserStore()
 const openPortfolio = ref(false);
 const openButton = ref(false);
 const openButtonToo = ref(false);

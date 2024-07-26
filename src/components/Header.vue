@@ -14,7 +14,7 @@
         </li>
         <li class="p-5 xl:p-8">
           <router-link to="/portfolio">
-            <button @click="() => emit('addPortfolio')" >Обо мне</button>
+            <button >Обо мне</button>
           </router-link>
         </li>
         <li class="p-5 xl:p-8">
