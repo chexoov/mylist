@@ -33,20 +33,35 @@
     />
     <div class="flex flex-col">
       <button
-        @click="togglePortfolio"
-        class="items-center mt-5 btn overflow-hidden relative w-64 bg-blue-500 text-white py-4 px-4 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full before:bg-orange-400 before:top-0 before:left-1/4 before:transition-transform before:opacity-0 before:hover:opacity-100 hover:text-orange-200 hover:before:animate-ping  transition-all duration-300"
-      >
-        <span class="relative">Краткая Ифа</span>
-      </button>
-      <ul v-if="openPortfolio">
-        <li
-          v-for="title in infoPortofolio"
-          :key="title.id"
-          class="flex w-2/3 mx-1 mt-1 bg-gray-200 font-bold text-black py-2 px-10 rounded-xl"
-        >
-          {{ title.id }} . {{ title.name }}
-        </li>
-      </ul>
+    @click="togglePortfolio"
+    class=" items-center mt-5 btn overflow-hidden relative w-64 bg-blue-500 text-white py-4 px-4 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full before:bg-orange-400 before:top-0 before:left-1/4 before:transition-transform before:opacity-0 before:hover:opacity-100 hover:text-orange-200 hover:before:animate-ping transition-all duration-300"
+  >
+    <span class="relative">Краткая Ифа</span>
+  </button>
+  <ul v-if="openPortfolio">
+    <li
+      v-for="title in infoPortofolio"
+      :key="title.id"
+      class="flex justify-between w-2/3 mx-1 mt-1 bg-gray-200 font-bold text-black py-2 px-10 rounded-xl hover:bg-gray-300"
+    >
+      {{ title.id }} . {{ title.name }}
+      <el-tooltip 
+        class="box-item"
+        effect="dark"
+        :content="title.Tooltip"
+        placement="right"
+        :visible="tooltipVisibility[title.id]">
+        
+        <el-icon :size="17" :color="'#409EFF'">
+          <InfoFilled 
+            @mouseenter="tooltipVisibility[title.id] = true"
+            @mouseleave="tooltipVisibility[title.id] = false"
+            class="items-end"
+          />
+        </el-icon>
+      </el-tooltip>
+    </li>
+  </ul>
       <button
         @click="toggleButton"
         class="items-center mt-5 btn overflow-hidden relative w-64 bg-blue-500 text-white py-4 px-4 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full before:bg-orange-400 before:top-0 before:left-1/4 before:transition-transform before:opacity-0 before:hover:opacity-100 hover:text-orange-200 hover:before:animate-ping transition-all duration-300"
@@ -91,8 +106,10 @@
         </li>
       </ul>
       <p class=" sticky bottom-0 my-5 px-5">Я бы с удовольствием пригласил тебя зайти и выпить, но боюсь, что ты согласишься.</p>
-       Данные с  глобального хранилища: {{ user.user }}
+       Данные с  глобального хранилища: {{ user.user }}
      <button @click="user.changeUsername">Изменить имя</button>
+     <p> Данные с  глобального хранилища 2: {{ test.test }} </p>
+     <button @click="test.changeTest(5)" > Изменить тест </button>
 
       <!-- component -->
     </div>
@@ -100,13 +117,19 @@
 </template>
 
 <script setup>
+import { reactive } from "vue";
 import { ref } from "vue";
 import {useUserStore} from '../stores/user'
+import {useTest} from '../stores/user'
 
 const user = useUserStore()
+const test = useTest()
 const openPortfolio = ref(false);
 const openButton = ref(false);
 const openButtonToo = ref(false);
+
+const tooltipVisibility = reactive({});
+
 
 const togglePortfolio = () => {
   openPortfolio.value = !openPortfolio.value;
@@ -133,10 +156,36 @@ const itemToo = [
 ];
 
 const infoPortofolio = [
-  { id: 1, name: "Живу в Казани" },
-  { id: 2, name: "Занимаюсь спортом" },
-  { id: 3, name: "Имеется военник" },
-  { id: 4, name: "Не судим" },
-  { id: 5, name: "Люблю путешествовать" },
+  { id: 1, name: "Живу в Казани" , Tooltip: "Казань третья столица России" },
+  { id: 2, name: "Занимаюсь спортом", Tooltip: "Арнольд в молодости"},
+  { id: 3, name: "Имеется военник",Tooltip: "Проблем не будет " },
+  { id: 4, name: "Не судим", Tooltip: "Порядочный гражданин" },
+  { id: 5, name: "Никого не сдавал - Крысой не являюсь", Tooltip: "Правда" },
 ];
+
+
+infoPortofolio.forEach(item => {
+  tooltipVisibility[item.id] = false;
+});
+
+
 </script>
+
+<style>
+.tooltip-base-box {
+  width: 600px;
+}
+.tooltip-base-box .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tooltip-base-box .center {
+  justify-content: center;
+}
+.tooltip-base-box .box-item {
+  width: 110px;
+  margin-top: 10px;
+}
+</style>
+
