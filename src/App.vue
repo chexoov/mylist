@@ -38,7 +38,7 @@ const addPortfolio = () => {
 </script>
 
 <style>
-body {
+/* body {
   background-color: #14e3ea !important;
-}
+} */
 </style>

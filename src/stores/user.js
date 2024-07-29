@@ -9,4 +9,17 @@ export const useUserStore = defineStore('user', () => {
     }
 
     return { user, changeUsername }
+
+  
 })
+
+export const useTest = defineStore('test', () => {
+  const test = ref(1)
+
+  const changeTest = (newValue) => {
+    test.value = newValue
+  }
+
+  return { test, changeTest }
+}
+)

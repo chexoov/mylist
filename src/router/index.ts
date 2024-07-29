@@ -29,6 +29,14 @@ const router = createRouter({
       path: "/blog",
       component: () => import("../components/blog.vue")
     },
+    {
+      path: "/project",
+      component: () => import("../components/MyProject.vue")
+    },
+    {
+      path: "/Promise",
+      component: () => import("../components/test.vue")
+    }
     
 
   ]
