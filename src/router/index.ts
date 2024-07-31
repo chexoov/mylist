@@ -36,7 +36,12 @@ const router = createRouter({
     {
       path: "/Promise",
       component: () => import("../components/test.vue")
-    }
+    },
+    {
+      path: "/TestTwo",
+      component: () => import("../components/TestTwo.vue")
+    },
+
     
 
   ]

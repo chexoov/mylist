@@ -1,5 +1,5 @@
 <template>
-    <div class="m-10">
+<div class="m-auto">
     <el-carousel :interval="5000" arrow="always"
     :style="`width: ${imagesWidth}vw`"
     >
@@ -11,8 +11,10 @@
         />
       </el-carousel-item>
     </el-carousel>
-  </div>
+</div>
+
   <button @click="$emit('bruh', 'Hello Parent!')">тест эмитов</button>
+
 </template>
 
 <script setup>

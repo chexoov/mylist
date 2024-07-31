@@ -37,6 +37,11 @@
             <span>Тест</span>
           </router-link>
         </li>
+        <li class="p-5 xl:p-8">
+          <router-link to="/TestTwo">
+            <span>Тест 2</span>
+          </router-link>
+        </li>
       </ul>
     </nav>
     <button class="border border-black rounded-full font-bold px-8 py-2">Contact me</button>
