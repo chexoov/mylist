@@ -71,6 +71,7 @@
               class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign up
+              
             </button>
           </div>
         </form>
@@ -81,12 +82,16 @@
   <script setup>
   import { ref } from "vue";
   import { useAuthStore } from "../stores/user";
+  import { useRouter } from "vue-router";
   
   const email = ref();
   const password = ref();
   const authStore = useAuthStore();
   
+  const router = useRouter();
+
   const signIn = async () => {
     await authStore.auth({ email: email.value, password: password.value }, 'signIn');
+    router.push('/TestTwo');
   };
   </script>

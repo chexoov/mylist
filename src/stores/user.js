@@ -25,7 +25,7 @@ export const useTest = defineStore('test', () => {
 }
 )
 
-const apiKey = 'AIzaSyCyeuTJ1zvVzLkXrKvzFQTZ85bW37f97tg'
+const apiKey = import.meta.env.VITE_API_KEY_FIREBASE
 
 export const useAuthStore = defineStore('auth', () => {
   const userInfo = ref({ 
@@ -63,6 +63,7 @@ export const useAuthStore = defineStore('auth', () => {
           error.value = 'Error';
           break;  
       }
+      throw error.value
     }
   }  
     return { auth, userInfo, error }    
