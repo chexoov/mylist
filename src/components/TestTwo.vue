@@ -33,7 +33,7 @@
 
   <DrowerTest v-if="isDrowerOpen" @closeDrower="closeDrawer" />
 
-  <div class="flex flex-col items-center xl:flex-row lg:flex-row ">
+  <div class="flex flex-col items-center xl:flex-row lg:flex-row">
     <el-card
       style="max-width: 480px"
       v-for="item in imgItem"
@@ -51,7 +51,7 @@
           ${{ item.price }}
           <button
             @click="creatOrder(item)"
-            class="border border-black bg-red-200 rounded-full font-bold "
+            class="border border-black bg-red-200 rounded-full font-bold"
           >
             <h2>Купить</h2>
           </button>
@@ -59,10 +59,6 @@
       </template>
     </el-card>
   </div>
-
- 
- 
-
 
   <div
     class="flex items-center overflow-auto h-96 relative max-w-lg my-5 mx-auto lg:mx-5 bg-white dark:highlight-white/5 shadow-lg ring-1 ring-black/5 rounded-xl flex-col divide-y dark:divide-slate-200/5"
@@ -122,12 +118,51 @@
       </div>
     </div>
   </div>
+  <div v-if="!meaningFirebase" >
+    
+    <el-card v-for="item in itemFirebase" :key="item" style="max-width: 480px">
+      <template  #header>Данные с firebase</template>
+      <p>{{ item.Name }}</p>
+      <p>{{ item.Type }}</p>
+      <p>{{ item.Test }}</p>
+      
+    </el-card>
+  </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import DrowerTest from "./DrowerTest.vue";
 import axios from "axios";
+
+import {useAuthStore} from "../stores/user"
+
+// firebase
+
+// еще добавили interceptors в папке  api.js для перехвата запроса , но он вырубает отоброжение других элементов , если получится починить нужно починить сылку 
+// https://jwt-firebase-vue3-fd2b5-default-rtdb.europe-west1.firebasedatabase.app/TestTwo.json
+
+const authStore = useAuthStore()
+const itemFirebase = ref();
+const meaningFirebase = ref(false);
+const getItemFirebase = async () => {
+  meaningFirebase.value = true
+  try {
+  const response =  await axios.get(`https://jwt-firebase-vue3-fd2b5-default-rtdb.europe-west1.firebasedatabase.app/TestTwo.json?auth=${authStore.userInfo.token}`)
+  itemFirebase.value = response.data
+  } catch (err) {
+    console.log(err.response);
+  } finally {
+    meaningFirebase.value = false
+  }
+}
+
+onMounted(async() => {
+  await getItemFirebase()
+})
+
+// end firebase
+
 
 const imgItem = ref([]);
 const comitUser = ref([]);
@@ -185,7 +220,4 @@ getUser();
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
 }
-
-
-
 </style>

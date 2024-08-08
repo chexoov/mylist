@@ -81,12 +81,17 @@
 <script setup>
 import { ref } from "vue";
 import { useAuthStore } from "../stores/user";
+import { useRouter } from "vue-router";
+
 
 const email = ref();
 const password = ref();
 const authStore = useAuthStore();
 
+const router = useRouter();
+
 const signup = async () => {
   await authStore.auth({ email: email.value, password: password.value }, 'signup');
+  router.push('/TestTwo');
 };
 </script>

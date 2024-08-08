@@ -9,6 +9,9 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
+// ломается воспроизведение других компонентов при включенном импорте 
+// import './api'
+
 import App from './App.vue'
 import router from './router'
 
