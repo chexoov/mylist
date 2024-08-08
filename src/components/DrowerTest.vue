@@ -9,7 +9,7 @@
           ><CloseBold
         /></el-icon>
         <div class="border border-black rounded-full px-2">
-          Общая стоимость: {{ totalPrice }}.руб
+          Общая стоимость: ${{ totalPrice }}
         </div>
       </div>
 
@@ -27,9 +27,9 @@
           <div class="flex flex-col">
             <p class="text-sm truncate mb-1">{{ item.title }}</p>
             <div class="">
-              <p class="mx-1">{{ item.price }}</p>
-              <el-button @click="delitItem(item)" type="danger" class="">
-                Удалить
+              <p class="mx-1">${{ item.price }}</p>
+              <el-button @click="delitItem(item)" type="danger" class="w-[20px]">
+                <el-icon><Delete /></el-icon>
               </el-button>
             </div>
           </div>
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import axios from "axios";
 import infoTest from "./infoTest.vue";
 
@@ -58,19 +58,21 @@ const totalPrice = computed(() =>
   newImg.value.reduce((acc, item) => acc + item.price, 0)
 );
 
-const imgItemAdd = async () => {
-  try {
-    const { data } = await axios.get(
-      `https://4dfce83c3fcfa997.mokky.dev/Drower`
-    );
-    newImg.value = newImg.value.map((item) => {
-      const drower = data.find((drower) => drower.id === item.id);
-    });
-  } catch (error) {
-    console.error("Ошибка при загрузке изображений:", error);
-  }
-};
-imgItemAdd();
+// const imgItemAdd = async () => {
+//   try {
+//     const { data } = await axios.get(
+//       `https://4dfce83c3fcfa997.mokky.dev/Drower`
+//     );
+//     newImg.value = data;
+//   } catch (error) {
+//     console.error("Ошибка при загрузке изображений:", error);
+//   }
+// };
+
+// imgItemAdd();
+
+// onMounted(imgItemAdd)
+
 
 const delitItem = async (item) => {
   try {
@@ -83,6 +85,15 @@ const delitItem = async (item) => {
     console.log(error);
   }
 };
+
+watch(
+  newImg,
+  () => {
+    localStorage.setItem('newImg', JSON.stringify(newImg.value))
+  },
+  { deep: true }
+)
+
 
 onMounted(async () => {
   try {

@@ -1,27 +1,5 @@
 <template>
-  <div
-    class="flex fixed items-start mx-2 mt-5 justify-center bg-gradient-to-br hover:opacity-100 transition hover:-translate-y-1"
-  >
-    <div
-      class="bg-white font-black text-center rounded-3xl border shadow-lg max-w-xs flex flex-col"
-    >
-      <img
-        class="mb-3 w-25 h-25 mt-5 rounded-xl mx-4 shadow-lg"
-        src="../assets/photo/IMAGE.png"
-        alt="product designer"
-      />
-      <h1 class="text-lg text-gray-700">Хадиуллин Артур</h1>
-      <h3 class="text-sm text-gray-400">frontend Вeveloper</h3>
-      <p class="text-xs text-gray-400 mt-4">
-        Кто никогда не совершал ошибок, тот никогда не пробовал ничего нового.
-      </p>
-      <button
-        class="mb-5 w-1/2 m-auto flex animate-bounce justify-center text-center bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide"
-      >
-        Hire Me
-      </button>
-    </div>
-  </div>
+
   <div
     class="flex relative mt-5 bg-white w-auto max-w-5xl m-auto rounded-xl shadow-xl mb-2 overflow-auto"
 >

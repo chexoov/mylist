@@ -1,40 +1,19 @@
 <template>
-
-  <Header @add-portfolio="addPortfolio" />
-  <div class="relative flex flex-col min-h-screen">
-    <!-- <Portfolio v-if="openPortfolio" /> -->
-    <router-view></router-view>
-    <div class="mt-20">
-
-      <Footer />
-    </div>
+  <div class="common-layout">
+    <el-container>
+      <el-header> <Header /> </el-header>
+      <el-main> 
+        <router-view></router-view>
+       </el-main>
+      <el-footer> <Footer /> </el-footer>
+    </el-container>
   </div>
 </template>
 
 <script setup>
-// import {useUserStore} from './stores/user'
-
-
-import { ref } from "vue";
-import Portfolio from "./components/Portfolio.vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 
-// const user = useUserStore()
-
-
-const openPortfolio = ref(false);
-
-const closePortfolio = () => {
-  openPortfolio.value = false;
-};
-const addPortfolio = () => {
-  openPortfolio.value = true;
-  console.log(openPortfolio.value);
-};
-
-// тут будут изменения
-// проверка 2
 </script>
 
 <style>

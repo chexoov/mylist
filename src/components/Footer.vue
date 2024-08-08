@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed bottom-0 left-0 right-0 z-0  bg-gray-800 text-white">
+  <div class="  bg-gray-800 text-white">
     <footer class="p-4 bg-white  sm:p-6 dark:bg-gray-800  ">
       <div class="md:justify-between rounded-xl  ">
         <div class="sm:flex sm:items-center sm:justify-between">

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -23,3 +24,48 @@ export const useTest = defineStore('test', () => {
   return { test, changeTest }
 }
 )
+
+const apiKey = 'AIzaSyCyeuTJ1zvVzLkXrKvzFQTZ85bW37f97tg'
+
+export const useAuthStore = defineStore('auth', () => {
+  const userInfo = ref({ 
+    token: '',
+    email: '',
+    userId: '',
+    refreshToken: '',
+    expiresIn: ''
+   })
+   const error = ref('');
+  const auth = async (payload, type) => {
+    const stringUrl = type === 'signup' ? 'signUp' : 'signInWithPassword' ;
+    try {
+      let response = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${stringUrl}?key=${apiKey}`,{
+        ...payload,
+        returnSecureToken: true
+      });
+      userInfo.value = {
+        token: response.data.idToken,
+        email: response.data.email,
+        userId: response.data.localId,
+        refreshToken: response.data.refreshToken,
+        expiresIn: response.data.expiresIn
+      }
+      console.log(response.data);
+    } catch (err) {
+      switch (err.response.data.error.message) {
+        case 'EMAIL_EXISTS':
+            error.value = 'Email  exists';
+          break;
+        case 'OPERATION_NOT_ALLOWED':
+            error.value = 'Operation not allowed';
+          break;
+        default:
+          error.value = 'Error';
+          break;  
+      }
+    }
+  }  
+    return { auth, userInfo, error }    
+  })
+
+
