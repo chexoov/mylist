@@ -51,6 +51,11 @@
                   <span>Тест 2</span>
                 </router-link>
               </el-dropdown-item>
+              <el-dropdown-item>
+                <router-link to="/HomeView">
+                  <span>Регистрация</span>
+                </router-link>
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -63,7 +68,7 @@
             </router-link>
           </li>
           <li class="p-5 xl:p-8">
-            <router-link to="/portfolio">
+            <router-link v-if="tokens" to="/portfolio">
               <button>Обо мне</button>
             </router-link>
           </li>
@@ -92,6 +97,11 @@
               <span>Тест 2</span>
             </router-link>
           </li>
+          <li class="p-5 xl:p-8">
+            <router-link v-if="!tokens" to="/HomeView">
+              <span>Регистрация</span>
+            </router-link>
+          </li>
         </ul>
       </nav>
     </div>
@@ -99,5 +109,23 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["addPortfolio"]);
+import {useAuthStore} from "../stores/user"
+import { computed } from "vue";
+
+const tokens = computed(() => 
+  authStore.userInfo.token
+)
+
+const authStore = useAuthStore()
+
+const checkUser = () => {
+  const token = JSON.parse(localStorage.getItem('userToken'))
+  if (token) {
+    authStore.userInfo.token = token.token
+    authStore.userInfo.refreshToken = token.refreshToken
+    authStore.userInfo.expiresIn = token.expiresIn
+  }
+  console.log(authStore.userInfo)
+}
+checkUser()
 </script>

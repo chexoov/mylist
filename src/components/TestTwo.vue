@@ -120,11 +120,11 @@
   </div>
   <div v-if="!meaningFirebase" >
     
-    <el-card v-for="item in itemFirebase" :key="item" style="max-width: 480px">
+    <el-card v-for="firebase in itemFirebase" :key="firebase" style="max-width: 480px">
       <template  #header>Данные с firebase</template>
-      <p>{{ item.Name }}</p>
-      <p>{{ item.Type }}</p>
-      <p>{{ item.Test }}</p>
+      <p>{{ firebase.Name }}</p>
+      <p>{{ firebase.Type }}</p>
+      <p>{{ firebase.Test }}</p>
       
     </el-card>
   </div>
@@ -138,6 +138,7 @@ import axios from "axios";
 import {useAuthStore} from "../stores/user"
 
 // firebase
+
 
 // еще добавили interceptors в папке  api.js для перехвата запроса , но он вырубает отоброжение других элементов , если получится починить нужно починить сылку 
 // https://jwt-firebase-vue3-fd2b5-default-rtdb.europe-west1.firebasedatabase.app/TestTwo.json
