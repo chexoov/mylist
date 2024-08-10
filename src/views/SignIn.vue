@@ -41,15 +41,7 @@
                 class="block text-sm font-medium leading-6 text-gray-900"
                 >Password</label
               >
-              <div class="text-sm">
-                <router-link to="/Contackt">
-                <button
-                  
-                  class="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >Forgot password?</button
-                >
-                </router-link>
-            </div>
+              
         </div>
             <div class="mt-2">
               <input
@@ -74,6 +66,16 @@
               
             </button>
           </div>
+          <div class="text-sm flex justify-center">
+              <router-link to="/HomeView">
+                <p>Если вы НЕ зарегистрированы = 
+                <button
+                  
+                  class="font-semibold text-indigo-600 hover:text-indigo-500 items-center justify-center"
+                  >Регистрация</button
+                ></p>
+                </router-link>
+            </div>
         </form>
       </div>
     </div>

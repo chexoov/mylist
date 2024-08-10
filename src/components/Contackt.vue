@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img
@@ -76,22 +76,22 @@
       </form>
     </div>
   </div>
-</template>
+</template> -->
 
 <script setup>
-import { ref } from "vue";
-import { useAuthStore } from "../stores/user";
-import { useRouter } from "vue-router";
+// import { ref } from "vue";
+// import { useAuthStore } from "../stores/user";
+// import { useRouter } from "vue-router";
 
 
-const email = ref();
-const password = ref();
-const authStore = useAuthStore();
+// const email = ref();
+// const password = ref();
+// const authStore = useAuthStore();
 
-const router = useRouter();
+// const router = useRouter();
 
-const signup = async () => {
-  await authStore.auth({ email: email.value, password: password.value }, 'signup');
-  router.push('/TestTwo');
-};
+// const signup = async () => {
+//   await authStore.auth({ email: email.value, password: password.value }, 'signup');
+//   router.push('/TestTwo');
+// };
 </script>
