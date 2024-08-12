@@ -56,6 +56,11 @@
                   <span>Регистрация</span>
                 </router-link>
               </el-dropdown-item>
+              <el-dropdown-item>
+                <router-link v-if="tokens" @click.prevent="logout" to="/SignIn">
+                  <span>Выход</span>
+                </router-link>
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -102,6 +107,11 @@
               <span>Регистрация</span>
             </router-link>
           </li>
+          <li class="p-5 xl:p-8">
+            <router-link v-if="tokens" @click.prevent="logout" to="/SignIn">
+              <span>Выход</span>
+            </router-link>
+          </li>
         </ul>
       </nav>
     </div>
@@ -109,6 +119,7 @@
 </template>
 
 <script setup>
+import router from "@/router";
 import {useAuthStore} from "../stores/user"
 import { computed } from "vue";
 
@@ -118,6 +129,7 @@ const tokens = computed(() =>
 
 const authStore = useAuthStore()
 
+// сохраняем в локальное хранилище информацию о пользователе
 const checkUser = () => {
   const token = JSON.parse(localStorage.getItem('userToken'))
   if (token) {
@@ -125,7 +137,13 @@ const checkUser = () => {
     authStore.userInfo.refreshToken = token.refreshToken
     authStore.userInfo.expiresIn = token.expiresIn
   }
-  console.log(authStore.userInfo)
 }
+
+const logout = () => {
+  authStore.logout()
+  localStorage.removeItem('userToken')
+  router.push('/SignIn')
+}
+
 checkUser()
 </script>

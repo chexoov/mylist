@@ -10,7 +10,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { initializeApp } from "firebase/app";
 
 // ломается воспроизведение других компонентов при включенном импорте 
-// import './api'
+import './api'
 
 import App from './App.vue'
 import router from './router'
