@@ -109,7 +109,7 @@
                   type="danger"
                   class="whitespace-nowrap px-6 py-4"
                 >
-                  Удалить
+                  Купить
                 </el-button>
               </tr>
             </tbody>
@@ -118,14 +118,16 @@
       </div>
     </div>
   </div>
-  <div v-if="!meaningFirebase" >
-    
-    <el-card v-for="firebase in itemFirebase" :key="firebase" style="max-width: 480px">
-      <template  #header>Данные с firebase</template>
+  <div v-if="!meaningFirebase">
+    <el-card
+      v-for="firebase in itemFirebase"
+      :key="firebase"
+      style="max-width: 480px"
+    >
+      <template #header>Данные с firebase</template>
       <p>{{ firebase.Name }}</p>
       <p>{{ firebase.Type }}</p>
       <p>{{ firebase.Test }}</p>
-      
     </el-card>
   </div>
 </template>
@@ -134,36 +136,36 @@
 import { ref, onMounted } from "vue";
 import DrowerTest from "./DrowerTest.vue";
 import axios from "axios";
+import  axiosApiInstance  from "../api";
 
-import {useAuthStore} from "../stores/user"
+import { useAuthStore } from "../stores/user";
 
 // firebase
 
-
-// еще добавили interceptors в папке  api.js для перехвата запроса , но он вырубает отоброжение других элементов , если получится починить нужно починить сылку 
+// еще добавили interceptors в папке  api.js для перехвата запроса , но он вырубает отоброжение других элементов , если получится починить нужно починить сылку
 // https://jwt-firebase-vue3-fd2b5-default-rtdb.europe-west1.firebasedatabase.app/TestTwo.json
 
-const authStore = useAuthStore()
 const itemFirebase = ref();
 const meaningFirebase = ref(false);
 const getItemFirebase = async () => {
-  meaningFirebase.value = true
+  meaningFirebase.value = true;
   try {
-  const response =  await axios.get(`https://jwt-firebase-vue3-fd2b5-default-rtdb.europe-west1.firebasedatabase.app/TestTwo.json?auth=${authStore.userInfo.token}`)
-  itemFirebase.value = response.data
+    const response = await axiosApiInstance.get(
+      `https://jwt-firebase-vue3-fd2b5-default-rtdb.europe-west1.firebasedatabase.app/TestTwo.json`
+    );
+    itemFirebase.value = response.data;
   } catch (err) {
     console.log(err.response);
   } finally {
-    meaningFirebase.value = false
+    meaningFirebase.value = false;
   }
-}
+};
 
-onMounted(async() => {
-  await getItemFirebase()
-})
+onMounted(async () => {
+  await getItemFirebase();
+});
 
 // end firebase
-
 
 const imgItem = ref([]);
 const comitUser = ref([]);
@@ -180,9 +182,14 @@ const openDrawer = () => {
 };
 
 const imgAddItemm = async () => {
-  const { data } = await axios.get(`https://4dfce83c3fcfa997.mokky.dev/myDog`);
-  imgItem.value = data;
+    try {
+        const { data } = await axios.get(`https://4dfce83c3fcfa997.mokky.dev/myDog`);
+        imgItem.value = data; // Предполагается, что imgItem - это ref, если вы используете Vue 3
+    } catch (error) {
+        console.error("Ошибка при загрузке изображения:", error);
+    }
 };
+
 imgAddItemm();
 
 const creatOrder = async (item) => {
