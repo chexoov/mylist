@@ -36,109 +36,109 @@
                     
                     
                 </div>
-                <!-- <div class="card-group card">
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-                </div>
-                <div class="card-group card">
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-                </div>
-                <div class="card-group card">
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-        <div class="little-card card">
-        
-        </div>
-        <div class="big-card card">
-        
-        </div>
-        
-        
-                </div> -->
             </div>
+            <!-- <div class="card-group card">
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+            </div>
+            <div class="card-group card">
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+            </div>
+            <div class="card-group card">
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+    <div class="little-card card">
+    
+    </div>
+    <div class="big-card card">
+    
+    </div>
+    
+    
+            </div> -->
             <div class="card-swiper-button">
                 <el-icon><CircleCheckFilled /></el-icon>
                 <button id="hate-button">
