@@ -10,30 +10,7 @@
   </template>
   
   <script>
-  export default {
-    props: {
-      value: {
-        type: String,
-        default: ''
-      }
-    },
-    data() {
-      return {
-        inputValue: this.value
-      }
-    },
-    methods: {
-      updateValue(value) {
-        this.inputValue = value
-        this.$emit('update:value', value) // Излучаем событие изменения значения
-      }
-    },
-    watch: {
-      value(newValue) {
-        this.inputValue = newValue // Обновляем локальное значение при изменении пропа
-      }
-    }
-  }
+
   </script>
   
   <style scoped>
