@@ -30,7 +30,7 @@
       <el-button @click="reloadPage" class="my-2">Restart</el-button>
     </div>
 
-    <el-dialog v-model="isFalse" align-center width="70%" class="text-2xl">
+    <el-dialog v-model="isDrowerOpen" align-center width="70%" class="text-2xl">
       <template #header> Результаты </template>
 
       <p class="text-lg">Времени потрачено: {{ timeElapsed }}</p>
@@ -50,7 +50,7 @@ import { ref, watch, computed } from "vue";
 import axios from "axios";
 
 const input = ref();
-const isFalse = ref(false);
+const isDrowerOpen = ref(false);
 const textArea = ref("");
 const errorsCount = ref(0);
 const fetchedTexArray = ref([]);
@@ -125,7 +125,7 @@ getQuote();
 
 watch(time, () => {
   if (time.value === 0) {
-    isFalse.value = true;
+    isDrowerOpen.value = true;
   }
 });
 
@@ -133,7 +133,7 @@ watch(textArea, (newValue) => {
   if (newValue.length === fetchedTextLength.value) {
     clearInterval(timer);
 
-    isFalse.value = true;
+    isDrowerOpen.value = true;
   }
 });
 

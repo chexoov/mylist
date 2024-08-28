@@ -1,97 +1,57 @@
-<!-- <template>
-  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img
-        class="mx-auto h-10 w-auto"
-        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-        alt="Your Company"
-      />
-      <h2
-        class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
-      >
-        Регистрация
-      </h2>
-    </div>
-
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" >
-        <div>
-          <label
-            for="email"
-            class="block text-sm font-medium leading-6 text-gray-900"
-            >Email address</label
-          >
-          <div class="mt-2">
-            <input
-              v-model="email"
-              id="email"
-              placeholder="email"
-              type="email"
-              autocomplete="email"
-              required
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div>
-          <div class="flex items-center justify-between">
-            <label
-              for="password"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Password</label
-            >
-            <div class="text-sm">
-              <router-link to="/SignIn">
-                <button
-                  
-                  class="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >Forgot password?</button
-                >
-                </router-link>
-            </div>
-          </div>
-          <div class="mt-2">
-            <input
-              v-model="password"
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div>
-          <button
-            @click="signup"
-            type="button"
-            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Sign in
-          </button>
-        </div>
-      </form>
+<template>
+  <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14 p-5">
+    <div>
+      <div class="mb-5 bg-slate-200 rounded-xl shadow-xl p-3">
+        <span ref="reactivText" v-for="(letter, index) in text" :key="index">
+          {{ letter }}
+        </span>
+      </div>
+      <div class="mb-10 bg-slate-100 rounded-xl shadow-xl p-3">
+        <textarea
+          v-model="textArea"
+          type="text"
+          :placeholder="text"
+          @input="checkTextArea"
+          class="w-full bg-slate-100 resize-none"
+        ></textarea>
+      </div>
     </div>
   </div>
-</template> -->
+</template>
 
 <script setup>
-// import { ref } from "vue";
-// import { useAuthStore } from "../stores/user";
-// import { useRouter } from "vue-router";
+import { ref, watch, computed } from "vue";
+import axios from "axios";
 
+const Key = "3T90ijZl6297EmMneISZAw==oE1lNBD0fqUDPIW1";
 
-// const email = ref();
-// const password = ref();
-// const authStore = useAuthStore();
+const text = ref("");
+const reactivText = ref([]);
+const textArea = ref("");
 
-// const router = useRouter();
+const ckeckTextArea = computed(() => textArea.value.split(""));
 
-// const signup = async () => {
-//   await authStore.auth({ email: email.value, password: password.value }, 'signup');
-//   router.push('/TestTwo');
-// };
+const gettText = async () => {
+  const { data } = await axios.get(
+    "https://api.api-ninjas.com/v1/quotes?category=happiness",
+    {
+      headers: {
+        "X-Api-Key": Key,
+      },
+    }
+  );
+  text.value = data[0].quote;
+};
+
+const checkTextArea = () => {
+  ckeckTextArea.value.forEach((letter, index) => {
+    if (letter === text.value[index]) {
+      reactivText.value[index].className = "text-green-500 underline";
+    } else {
+      reactivText.value[index].className = "text-red-500 underline";
+    }
+  })
+};
+
+gettText();
 </script>
