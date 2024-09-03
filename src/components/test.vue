@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center mb-10">
     <img
-      class="w-1/3 mb-5 "
+      class="w-1/3 mb-5"
       src="https://sun1-23.userapi.com/s/v1/ig2/4KGPe8OxJs71BJHwyIK7UeDLxdWR-HkfgN_arKEJPSLWOJkYkzCH38EtossMEbkgly4esQZsDxsOz2XOHKqsiXj5.jpg?size=2154x2154&quality=96&crop=0,0,2154,2154&ava=1"
       alt=""
     />
@@ -22,21 +22,32 @@
     <el-slider v-model="imagesWidth" />
     <div>{{ imagesWidth }}</div>
   </div>
-
+  <CustomHTMLElement text="bruh" text2="" />
+  <custom-element text="bruh" text2="809098098098" />
   <Carousel
     @bruh="testEmitAlert($event)"
     :images="images"
     :images-width="imagesWidth"
   />
+  <Carousel
+    @bruh="testEmitAlert($event)"
+    :images="images"
+    :images-width="imagesWidth"
+  />
+
   <div></div>
   <NewItem @increaseByOne="peremennaya = $event + peremennaya" />
   <div>{{ peremennaya }}</div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineCustomElement } from "vue";
 import Carousel from "./Carousel.vue";
 import NewItem from "./NewItem.vue";
+import CustomHTMLElement from "./CustomHTMLElement.vue";
+
+const element = defineCustomElement(CustomHTMLElement);
+customElements.define('custom-element', element);
 
 const user = ref({});
 const images = ref([]);
