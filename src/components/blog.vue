@@ -81,6 +81,7 @@ const measureTypeSpeed = () => {
     (charsTypedLength.value / timeElapsed) * 60
   );
 
+  
   speed.value = charsPerMinute;
 };
 
